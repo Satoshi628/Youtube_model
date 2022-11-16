@@ -1,0 +1,65 @@
+hydra:
+    run:
+        dir: ./outputs/run_test
+#./outputs/test/${now:%Y-%m-%d}/${now:%H-%M-%S}
+test_conf:
+    gpu: 0
+    multi_gpu: False
+    visualization: False
+    # IoU Dice HD
+    use_Eval:
+        - IoU
+        - Dice
+        #- HD
+
+
+dataset:
+    # Covid19 Drosophila CityScapes
+    name: Covid19
+    Covid19: #256x256px
+        root_dir: /mnt/kamiya/dataset/covid19
+        model: U-Net
+        input_channel: 3
+        classes: 4
+        batch_size: 16
+    
+    Drosophila: #1024x1024px
+        root_dir: /mnt/kamiya/dataset/drosophila/data
+        model: U-Net
+        input_channel: 1
+        classes: 5
+        val_area: 1
+        batch_size: 16
+    
+    CityScapes: #2048x1024px
+        root_dir: /mnt/kamiya/dataset/City_Scapes
+        model: DeepLabv3
+        input_channel: 3
+        classes: 20 # 19class + other class
+        batch_size: 4
+    
+    ACDC: #256x256px
+        root_dir: /mnt/kamiya/dataset/ACDC
+        model: U-Net
+        split: 1
+        input_channel: 1
+        classes: 4
+        batch_size: 4
+    
+    Synapse_Multi_Organ: #256x256px
+        root_dir: /mnt/kamiya/dataset/Synapse_Multi_Organ
+        model: U-Net
+        split: 1
+        input_channel: 1
+        classes: 9
+        batch_size: 4
+
+    BRATS2013: #256x256px
+        root_dir: /mnt/kamiya/dataset/BRATS2013
+        model: U-Net
+        split: 0
+        input_channel: 4
+        classes: 5
+        batch_size: 16
+        val_size: 16
+        val_start: 0

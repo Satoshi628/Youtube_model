@@ -1,0 +1,21 @@
+hydra:
+    run:
+        dir: ./outputs/run_test
+#./outputs/main/${now:%Y-%m-%d}/${now:%H-%M-%S}
+
+train_conf:
+    epoch: 300
+    gpu: 0
+    pretrained: True
+    multi_gpu: True
+    batch_size: 16
+    test_size: 16
+
+
+scheduler:
+    first_cycle_steps: 100
+    cycle_mult: 2.0
+    max_lr: 0.001
+    min_lr: 0.0
+    warmup_steps: 10
+    gamma: 0.9
